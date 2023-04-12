@@ -1,0 +1,243 @@
+<html>
+
+<head>
+    <title>Sigunup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+           @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+  background-color: rgba(170, 124, 38, 0.658);
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #ffffffd2;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(228, 211, 118, 0.774), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #c0b057;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,
+.form button:active,
+.form button:focus {
+  background: #43a047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4caf50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before,
+.container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #ef3b3a;
+}
+body {
+  background: #775522a1; /* fallback for old browsers */
+  background: rgba(133, 111, 42, 0.616);
+  background: linear-gradient(
+    90deg,
+    rgba(128, 124, 22, 0.616) 0%,
+    rgb(138, 131, 36) 50%
+  );
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <form>
+        <h1>Register your account</h1>
+        <div class="container">
+            
+
+          
+    <center><label for="email"><b>Email</b></label></center>
+            
+            <input type="text" placeholder="Enter Email" name="email" id="email" required>
+    
+            <center><label><b>Password</b></label></center>
+            <input type="password" placeholder="Password" name="psw" id="psw" required>
+    
+           
+            
+    <center>
+            <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
+        </center>
+        </div>
+    
+        <div class="container signin">
+            <a href="sigin.html">Sign in</a>
+        </div>
+    </form>
+
+</body>
+</html>
+
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    import {getDatabase, set, ref, update} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyBG1KMgeNUPcJrWq3oTrh6BKSyZfN1E070",
+    authDomain: "authentcation-13f07.firebaseapp.com",
+    databaseURL: "https://authentcation-13f07-default-rtdb.firebaseio.com",
+    projectId: "authentcation-13f07",
+    storageBucket: "authentcation-13f07.appspot.com",
+    messagingSenderId: "162471295253",
+    appId: "1:162471295253:web:a1c7e2525e97d7fe9b111c"
+  };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const database = getDatabase(app);
+
+    submitData.addEventListener('click', (e) => {
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('psw').value;
+
+        //sign up user
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ... user.uid
+                set(ref(database, 'users/' + user.uid), {
+                    email: email,
+                    password: password
+                })
+                    .then(() => {
+                        // Data saved successfully!
+                        alert('user created successfully');
+                        
+        
+                    })
+                    .catch((error) => {
+                        // The write failed...
+                        alert(error);
+                    });
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+                alert(errorMessage);
+            });
+
+        // log in user
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+
+                // save log in details into real time database
+                var lgDate = new Date();
+                update(ref(database, 'users/' + user.uid), {
+                    last_login: lgDate,
+                })
+                    .then(() => {
+                        // Data saved successfully!
+                        alert('user logged in successfully');
+
+                    })
+                    .catch((error) => {
+                        // The write failed...
+                        alert(error);
+                    });
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage);
+            });
+
+      
+    });
+
+</script
