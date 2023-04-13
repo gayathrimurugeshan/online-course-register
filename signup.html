@@ -1,17 +1,10 @@
 <html>
+    <head>
+        <title>signup</title>
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-<head>
-    <title>Sigunup</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-           @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-  background-color: rgba(170, 124, 38, 0.658);
-}
 .form {
   position: relative;
   z-index: 1;
@@ -20,7 +13,7 @@
   margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(228, 211, 118, 0.774), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 20px 0 rgba(153, 152, 145, 0.774), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
   font-family: "Roboto", sans-serif;
@@ -37,7 +30,9 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #c0b057;
+  background-color: #00CDAC;
+  background-repeat: no-repeat;
+  
   width: 100%;
   border: 0;
   padding: 15px;
@@ -50,12 +45,15 @@
 .form button:hover,
 .form button:active,
 .form button:focus {
-  background: #43a047;
+  background-image:radial-gradient(#00CDAC,#02AABD);
 }
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
+}
+input:hover{
+  background-color: #00cdab2a;
 }
 .form .message a {
   color: #4caf50;
@@ -101,52 +99,49 @@
 body {
   background: #775522a1; /* fallback for old browsers */
   background: rgba(133, 111, 42, 0.616);
-  background: linear-gradient(
-    90deg,
-    rgba(128, 124, 22, 0.616) 0%,
-    rgb(138, 131, 36) 50%
-  );
+  background-image:radial-gradient(#02AABD , #00CDAC);
+  
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 
-    </style>
-</head>
+        </style>
 
-<body>
-
-    <form>
-        <h1>Register your account</h1>
-        <div class="container">
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="form">
+              <form>
+                <div class="container">
+                    <h1>Register your account</h1>
+                    <p>Please fill in this form to create an account.</p>
+                    <hr>
             
-
-          
-    <center><label for="email"><b>Email</b></label></center>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" required>
             
-            <input type="text" placeholder="Enter Email" name="email" id="email" required>
-    
-            <center><label><b>Password</b></label></center>
-            <input type="password" placeholder="Password" name="psw" id="psw" required>
-    
-           
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Password" name="psw" id="psw" required>
             
-    <center>
-            <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
-        </center>
-        </div>
+                    <hr>
+              
+            
+                    <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
+                </div>
+            
+                <div class="container signin">
+                   
+                </div>
+            </form>
+             
+            </div>
+          </div>
+    </body>
     
-        <div class="container signin">
-            <a href="sigin.html">Sign in</a>
-        </div>
-    </form>
-
-</body>
-</html>
-
-
-<script type="module">
+      <script type="module">
+   
     // Import the functions you need from the SDKs you need
     import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
     import {
@@ -171,6 +166,8 @@ body {
     messagingSenderId: "162471295253",
     appId: "1:162471295253:web:a1c7e2525e97d7fe9b111c"
   };
+ 
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
@@ -194,6 +191,7 @@ body {
                     .then(() => {
                         // Data saved successfully!
                         alert('user created successfully');
+                        window.location.href = "home.html";
                         
         
                     })
@@ -224,6 +222,7 @@ body {
                     .then(() => {
                         // Data saved successfully!
                         alert('user logged in successfully');
+                        window.location.href = "registration.html";
 
                     })
                     .catch((error) => {
@@ -240,4 +239,8 @@ body {
       
     });
 
-</script
+</script>
+
+
+
+

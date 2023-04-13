@@ -14,11 +14,11 @@ root {
 
 body {
   width: auto;
-  background-image: url("gl.jpg");
-  background-repeat: no-repeat;
+  
+  
   background-size: cover;
   color: white;
-  background-color: wheat;
+  background:linear-gradient(to right,#158d9b , #00CDAC);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -52,7 +52,7 @@ i {
 
 i:hover,
 a:hover {
-  color: dodgerblue;
+  color:#00CDAC;
   cursor: pointer;
 }
 
@@ -202,7 +202,7 @@ a:hover {
   text-align: center;
   padding: 20px;
   opacity: 0.9;
-  background-color: rgba(100, 98, 98, 0.288);
+  background-color: #bc4639;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
@@ -332,7 +332,7 @@ a:hover {
     flex-flow: row wrap;
     padding: 30px 30px 20px 30px;
     color: #2f2f2f;
-    background-color: #573c1562;
+    background-color:white;
     border-top: 1px solid #42390e63;
     width: 30cm;
   }
