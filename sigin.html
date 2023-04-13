@@ -129,6 +129,7 @@ body {
                   
             
                     <button type="button" id="submitData" name="submitData" class="registerbtn">Register</button>
+                    <a href="signup.html">SIGNUP</a>
                 </div>
             
         
@@ -136,6 +137,7 @@ body {
              
             </div>
           </div>
+          
     </body>
     
       <script type="module">
@@ -189,6 +191,8 @@ body {
                     .then(() => {
                         // Data saved successfully!
                         alert('user created successfully');
+                        window.location.href = "home.html";
+
                         
                         
         
@@ -220,7 +224,7 @@ body {
                     .then(() => {
                         // Data saved successfully!
                         alert('user logged in successfully');
-                        window.location.href = "registration.html";
+                        window.location.href = "home.html";
 
                     })
                     .catch((error) => {
